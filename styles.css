@@ -16,7 +16,7 @@
     --link: #C8A25D;
     --accent: #C8A25D;
     --cards: #2C241C;
-    --header: linear-gradient(to right, rgba(102,78,35,1), rgba(102,78,35,0));
+    --header: linear-gradient(to right, rgba(238,227,210,1), rgba(238,227,210,0));
     --header-text: #FFF1DE;
 }
 
@@ -26,43 +26,44 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+header {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 0.5rem;
+    grid-template-areas: 
+        "title  title  title"
+        "spacer quote toggle"
+        "divider divider divider";
+    align-items: center;
+    justify-content: center;
+}
+
 h1 {
     text-align: center;
     font-family: 'Marmelad', sans-serif;
-}
-
-h2 {
-    font-family: 'Marmelad', sans-serif;
-    background-image: var(--header);
-    color: var(--header-text);
-    padding: 0.25rem 1rem;
-}
-
-.subhead {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr; 
-    align-items: center;
+    grid-area: title;
 }
 
 .spacer {
     display: inline-block;
+    grid-area: spacer;
 }
 
 .quote {
     font-family: 'Lato',sans-serif;
     font-size: 1.2rem;
     font-style: italic;
-    flex: 2;
     color: #C8A25D;
     display: inline-block;
     justify-self: center;
+    grid-area: quote;
 }
 
 /* START mode switch */
 .toggle {
-    display: inline-block;
     justify-self: right;
     padding-right: 2rem;
+    grid-area: toggle;
 }
 
 .switch {
@@ -129,6 +130,14 @@ input:checked + .slider:before {
     padding-bottom: 0.5rem;
     border-bottom: 3px solid var(--accent);
     position: sticky;
+    grid-area: divider;
+}
+
+h2 {
+    font-family: 'Marmelad', sans-serif;
+    background-image: var(--header);
+    color: var(--header-text);
+    padding: 0.25rem 1rem;
 }
 
 .about-container {
@@ -165,7 +174,7 @@ input:checked + .slider:before {
     justify-content: center;
     align-items: center;
     margin: 0 2rem;
-    box-shadow: 3px 3px 3px var(--accent);
+    box-shadow: 1px 1px 2px var(--accent);
     transition: box-shadow 0.15s ease, top 0.1s ease, right 0.1s ease;
     cursor: pointer;
 }
@@ -207,6 +216,27 @@ input:checked + .slider:before {
 
 
 @media only screen and (max-width: 600px) { 
+    header {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "title"
+            "quote"
+            "divider"
+            "toggle";
+    }
+
+    .spacer {
+        display: none;
+    }
+
+    .quote {
+        font-size: 1.1rem;
+    }
+
+    .toggle {
+        transform: scale(0.7);
+    }
+
     .about-container { 
         flex-direction: column-reverse; 
     } 
